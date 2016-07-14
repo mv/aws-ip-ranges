@@ -30,7 +30,17 @@ Simple usage:
 ## More...
 
 
+## References
+
+[Download: JSON file](https://ip-ranges.amazonaws.com/ip-ranges.json)
+
+[Doc: AWS IP Address Ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html)
+
+[Blog: AWS Public IP Address Ranges Now Available](https://aws.amazon.com/blogs/aws/aws-ip-ranges-json/)
+
+
 ## License
 
-This is free software, and may be redistributed under the terms specified in the LICENSE file.
+This is free software, and may be redistributed under the terms specified in
+the LICENSE file.
 
