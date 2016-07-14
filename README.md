@@ -1,7 +1,7 @@
-# AWS - aws-ip-ranges
+# AWS: aws-ip-ranges
 
-A simple command-line utility to list, filter and check current ranges of IP
-used by AWS.
+A simple command-line utility to list, filter and check the current list of
+AWS Public IP Address Ranges.
 
 
 ## Install
@@ -19,12 +19,15 @@ Simple usage:
     aws-ip-ranges list
 
     # filter: by region, by service, or both
-    aws-ip-ranges list region=sa-east-1
     aws-ip-ranges list service=ec2
+    aws-ip-ranges list region=sa-east-1
     aws-ip-ranges list region=sa-east-1 service=ec2
 
-    # check: this IP belongs to AWS?
+    # check: that IP belongs to AWS?
     aws-ip-ranges check 177.71.207.128
+
+    # download: get json file
+    aws-ip-ranges download
 
 
 ## More...
