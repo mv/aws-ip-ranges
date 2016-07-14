@@ -51,5 +51,7 @@ log/
 .vagrant/
 
 # This project
-?.json
+ip-ranges.json
+__pycache__
+*.sqlite
 
