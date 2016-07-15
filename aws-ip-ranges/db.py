@@ -36,6 +36,8 @@ def insert_range(item):
         VALUES( ?, ?, ?)
     '''
     try:
+        tup = (item['region'], item['service'], item['ip_prefix'])
+        logging.debug('insert_range: [%s]', item['ip_prefix'])
         cur.execute(sql, tup)
         con.commit()
     except Exception as e:
