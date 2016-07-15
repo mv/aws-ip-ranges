@@ -7,37 +7,42 @@ import sqlite3
 con = ''
 cur = ''
 
+con = sqlite3.connect('ranges.sqlite')
+cur = con.cursor()
 
 def create_db():
-    con = sqlite3.connect('ranges.sqlite')
-    cur = con.cursor()
-    cur.execute('''
+    sql = '''
         CREATE TABLE IF NOT EXISTS ranges
-            ( ip        TEXT
-            , region    TEXT
+            ( region    TEXT
             , service   TEXT
+            , ip        TEXT
             )
-    ''')
+    '''
+    try:
+        cur.execute(sql)
+    except Exception as e:
+        print('Error: create_db:', e)
 
 
-def load_ranges(ranges):
-
-    list_of_tuples = []
-    for item in ranges:
-        list_of_tuples.append( (item['ip_prefix'], item['region'], item['service']) )
-
-    cur.execute('''
+def insert_range(tup):
+    sql = '''
         INSERT INTO ranges
-            ( ip
-            , region
+            ( region
             , service
+            , ip
             )
-        VALUES( ?, ?, ?)''', list_of_tuples)
-    conn.commit
+        VALUES( ?, ?, ?)
+    '''
+    try:
+        cur.execute(sql, tup)
+        con.commit()
+    except Exception as e:
+        print('Error: insert_range:', e)
+        raise e
+
 
 
 def print_all():
-
     sql = '''
         SELECT region, service, ip
           FROM ranges
@@ -46,4 +51,10 @@ def print_all():
     for row in cur.execute(sql):
         print(row[0], row[1], row[2])
 
+
+def close_db():
+    try:
+        con.close()
+    except Exception as e:
+        print('Error: close_db', e)
 
