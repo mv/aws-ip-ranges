@@ -2,6 +2,7 @@
 #
 
 import sqlite3
+import logging
 
 
 con = ''
@@ -19,12 +20,13 @@ def create_db():
             )
     '''
     try:
+        logging.info('creating db')
         cur.execute(sql)
     except Exception as e:
-        print('Error: create_db:', e)
+        logging.error('creating db: [%s]', e )
 
 
-def insert_range(tup):
+def insert_range(item):
     sql = '''
         INSERT INTO ranges
             ( region
@@ -37,9 +39,7 @@ def insert_range(tup):
         cur.execute(sql, tup)
         con.commit()
     except Exception as e:
-        print('Error: insert_range:', e)
-        raise e
-
+        logging.error('insert_range: [%s]', e)
 
 
 def print_all():
@@ -55,6 +55,7 @@ def print_all():
 def close_db():
     try:
         con.close()
+        logging.info('db closed')
     except Exception as e:
-        print('Error: close_db', e)
+        logging.error('close_db: [%s]', e)
 
